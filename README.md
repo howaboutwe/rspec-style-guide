@@ -61,7 +61,7 @@ You can generate a PDF or an HTML copy of this guide using
     end
     ```
 
-* Make heavy use of `describe` and `context`
+* Make heavy use of `describe` and `context`, but do not use a `context` for a single test.
 * Name the `describe` blocks as follows:
   * use "description" for non-methods
   * use pound "#method" for instance methods
