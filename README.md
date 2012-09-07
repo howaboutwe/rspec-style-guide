@@ -20,7 +20,7 @@ You can generate a PDF or an HTML copy of this guide using
 
 ## Table of Contents
 
-* [Source Code Layout](#source-code-layout)
+* [RSpec](#rspec)
 
 ## RSpec
 
