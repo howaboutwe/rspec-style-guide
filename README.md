@@ -216,18 +216,6 @@ You can generate a PDF or an HTML copy of this guide using
     end
     ```
 
-* Prefer the capybara negative selectors over should_not with the positive.
-
-    ```Ruby
-    # bad
-    page.should_not have_selector('input', type: 'submit')
-    page.should_not have_xpath('tr')
-
-    # good
-    page.should have_no_selector('input', type: 'submit')
-    page.should have_no_xpath('tr')
-    ```
-
 * When a view uses helper methods, these methods need to be
   stubbed. Stubbing the helper methods is done on the `template`
   object:
