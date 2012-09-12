@@ -90,8 +90,8 @@ You can generate a PDF or an HTML copy of this guide using
     end
     ```
 
-* Use Factory Girl or Mechanize to create test objects (follow the
-  project's conventions)
+* Use Machinist (for dating) or Factory Girl (everything else) to
+  create test objects.
 * Make heavy use of mocks and stubs
 
     ```Ruby
@@ -354,7 +354,7 @@ which should be validated. Using `be_valid` does not guarantee that the problem
     describe Article
       describe '#title'
         it 'is unique' do
-          another_article = FactoryGirl.create.build(:article, title: article.title)
+          another_article = FactoryGirl.build(:article, title: article.title)
           article.should have(1).error_on(:title)
         end
       end
