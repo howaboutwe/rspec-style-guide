@@ -121,56 +121,6 @@ You can generate a PDF or an HTML copy of this guide using
     before(:each) { @article = FactoryGirl.create(:article) }
     ```
 
-* Use `subject` when possible
-
-    ```Ruby
-    describe Article do
-      subject { FactoryGirl.create(:article) }
-
-      it 'is not published on creation' do
-        subject.should_not be_published
-      end
-    end
-    ```
-
-* Use `specify` if possible. It is a synonym of `it` but is more readable when there is no docstring.
-
-    ```Ruby
-    # bad
-    describe Article do
-      before { @article = FactoryGirl.create(:article) }
-
-      it 'is not published on creation' do
-        @article.should_not be_published
-      end
-    end
-
-    # good
-    describe Article do
-      let(:article) { FactoryGirl.create(:article) }
-      specify { article.should_not be_published }
-    end
-    ```
-
-* Use `its` when possible
-
-    ```Ruby
-    # bad
-    describe Article do
-      subject { FactoryGirl.create(:article) }
-
-      it 'has the current date as creation date' do
-        subject.creation_date.should == Date.today
-      end
-    end
-
-    # good
-    describe Article do
-      subject { FactoryGirl.create(:article) }
-      its(:creation_date) { should == Date.today }
-    end
-    ```
-
 ### Views
 
 * The directory structure of the view specs `spec/views` matches the
