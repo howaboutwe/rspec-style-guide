@@ -396,7 +396,7 @@ which should be validated. Using `be_valid` does not guarantee that the problem
     describe Article do
       let(:article) { FactoryGirl.create(:article) }
 
-      describe '#publish" do
+      describe "#publish" do
         it "publishes the article" do
           article.publish
           Article.count.should == 1
