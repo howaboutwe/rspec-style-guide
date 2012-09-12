@@ -115,17 +115,17 @@ You can generate a PDF or an HTML copy of this guide using
 
     ```Ruby
     # use this:
-    let(:article) { Fabricate(:article) }
+    let(:article) { FactoryGirl.create(:article) }
 
     # ... instead of this:
-    before(:each) { @article = Fabricate(:article) }
+    before(:each) { @article = FactoryGirl.create(:article) }
     ```
 
 * Use `subject` when possible
 
     ```Ruby
     describe Article do
-      subject { Fabricate(:article) }
+      subject { FactoryGirl.create(:article) }
 
       it 'is not published on creation' do
         subject.should_not be_published
@@ -138,7 +138,7 @@ You can generate a PDF or an HTML copy of this guide using
     ```Ruby
     # bad
     describe Article do
-      before { @article = Fabricate(:article) }
+      before { @article = FactoryGirl.create(:article) }
 
       it 'is not published on creation' do
         @article.should_not be_published
@@ -147,7 +147,7 @@ You can generate a PDF or an HTML copy of this guide using
 
     # good
     describe Article do
-      let(:article) { Fabricate(:article) }
+      let(:article) { FactoryGirl.create(:article) }
       specify { article.should_not be_published }
     end
     ```
@@ -157,7 +157,7 @@ You can generate a PDF or an HTML copy of this guide using
     ```Ruby
     # bad
     describe Article do
-      subject { Fabricate(:article) }
+      subject { FactoryGirl.create(:article) }
 
       it 'has the current date as creation date' do
         subject.creation_date.should == Date.today
@@ -166,7 +166,7 @@ You can generate a PDF or an HTML copy of this guide using
 
     # good
     describe Article do
-      subject { Fabricate(:article) }
+      subject { FactoryGirl.create(:article) }
       its(:creation_date) { should == Date.today }
     end
     ```
@@ -349,7 +349,7 @@ You can generate a PDF or an HTML copy of this guide using
 
     ```Ruby
     describe Article
-      let(:article) { Fabricate(:article) }
+      let(:article) { FactoryGirl.create(:article) }
     end
     ```
 
@@ -404,7 +404,7 @@ which should be validated. Using `be_valid` does not guarantee that the problem
     describe Article
       describe '#title'
         it 'is unique' do
-          another_article = Fabricate.build(:article, title: article.title)
+          another_article = FactoryGirl.create.build(:article, title: article.title)
           article.should have(1).error_on(:title)
         end
       end
