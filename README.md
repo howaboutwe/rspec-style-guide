@@ -388,6 +388,28 @@ which should be validated. Using `be_valid` does not guarantee that the problem
      end
      ```
 
+### State
+
+* Avoid shared state as much as possible.
+    ```Ruby
+    # bad
+    describe Article do
+      let(:article) { FactoryGirl.create(:article) }
+
+      describe '#publish" do
+        it "publishes the article" do
+          article.publish
+          Article.count.should == 1
+        end
+
+        it "publishes the article again" do
+          article.publish
+          Article.count.should == 2
+        end
+      end
+    end
+    ```
+
 # Contributing
 
 Feel free to open tickets or send pull requests with improvements. Thanks in
