@@ -390,21 +390,25 @@ which should be validated. Using `be_valid` does not guarantee that the problem
 
 ### State
 
-* Avoid shared state as much as possible.
+* Avoid incidental state as much as possible.
     ```Ruby
-    # bad
     describe Article do
       let(:article) { FactoryGirl.create(:article) }
+      let(:another_article) { FactoryGirl.create(:article) }
 
       describe "#publish" do
+        # bad
         it "publishes the article" do
           article.publish
-          Article.count.should == 1
+          
+          # Creating another shared Article test object above would cause this
+          # test to break
+          Article.count.should == 2
         end
 
-        it "publishes the article again" do
-          article.publish
-          Article.count.should == 2
+        # good
+        it "publishes the article" do
+          -> { article.publish }.should_change(Article, :count).by(1)
         end
       end
     end
