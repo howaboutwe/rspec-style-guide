@@ -90,8 +90,8 @@ You can generate a PDF or an HTML copy of this guide using
     end
     ```
 
-* Use [fabricators](http://fabricationgem.org/) to create test
-  objects.
+* Use Factory Girl or Mechanize to create test objects (follow the
+  project's conventions)
 * Make heavy use of mocks and stubs
 
     ```Ruby
