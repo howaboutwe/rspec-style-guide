@@ -181,8 +181,6 @@ You can generate a PDF or an HTML copy of this guide using
     end
     ```
 
-* Always mock the models in the view specs. The purpose of the view is
-  only to display information.
 * The method `assign` supplies the instance variables which the view
   uses and are supplied by the controller.
 
@@ -200,35 +198,6 @@ You can generate a PDF or an HTML copy of this guide using
         action: articles_path
       ) do |form|
         form.should have_selector('input', type: 'submit')
-      end
-    end
-    ```
-
-* When a view uses helper methods, these methods need to be
-  stubbed. Stubbing the helper methods is done on the `template`
-  object:
-
-    ```Ruby
-    # app/helpers/articles_helper.rb
-    class ArticlesHelper
-      def formatted_date(date)
-        # ...
-      end
-    end
-
-    # app/views/articles/show.html.haml
-    = "Published at: #{formatted_date(@article.published_at)}"
-
-    # spec/views/articles/show.html.haml_spec.rb
-    describe 'articles/show.html.haml' do
-      it 'displays the formatted date of article publishing'
-        article = mock_model(Article, published_at: Date.new(2012, 01, 01))
-        assign(:article, article)
-
-        template.stub(:formatted_date).with(article.published_at).and_return('01.01.2012')
-
-        render
-        rendered.should have_content('Published at: 01.01.2012')
       end
     end
     ```
@@ -373,44 +342,17 @@ which should be validated. Using `be_valid` does not guarantee that the problem
     end
     ```
 
-* Add a separate `describe` for each attribute which has validations.
-
-    ```Ruby
-    describe Article
-      describe '#title'
-        it 'is required' do
-          article.title = nil
-          article.should have(1).error_on(:title)
-        end
-      end
-    end
-    ```
-
-* When testing uniqueness of a model attribute, name the other object `another_object`.
-
-    ```Ruby
-    describe Article
-      describe '#title'
-        it 'is unique' do
-          another_article = FactoryGirl.build(:article, title: article.title)
-          article.should have(1).error_on(:title)
-        end
-      end
-    end
-    ```
-
 ### Mailers
 
-* The model in the mailer spec should be mocked. The mailer should not depend on the model creation.
 * The mailer spec should verify that:
   * the subject is correct
   * the receiver e-mail is correct
   * the e-mail is sent to the right e-mail address
-  * the e-mail contains the required information
+  * testing the email body should be done in a view spec
 
      ```Ruby
      describe SubscriberMailer
-       let(:subscriber) { mock_model(Subscription, email: 'johndoe@test.com', name: 'John Doe') }
+       let(:subscriber) { FactoryGirl.build(:subscription, email: 'johndoe@test.com', name: 'John Doe') }
 
        describe 'successful registration email'
          subject { SubscriptionMailer.successful_registration_email(subscriber) }
@@ -418,10 +360,6 @@ which should be validated. Using `be_valid` does not guarantee that the problem
          its(:subject) { should == 'Successful Registration!' }
          its(:from) { should == ['info@your_site.com'] }
          its(:to) { should == [subscriber.email] }
-
-         it 'contains the subscriber name' do
-           subject.body.encoded.should match(subscriber.name)
-         end
        end
      end
      ```
