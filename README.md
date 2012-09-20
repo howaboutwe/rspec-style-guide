@@ -92,24 +92,7 @@ You can generate a PDF or an HTML copy of this guide using
 
 * Use Machinist (for dating) or Factory Girl (everything else) to
   create test objects.
-* Make heavy use of mocks and stubs
-
-    ```Ruby
-    # mocking a model
-    article = mock_model(Article)
-
-    # stubbing a method
-    Article.stub(:find).with(article.id).and_return(article)
-    ```
-
-* When mocking a model, use the `as_null_object` method. It tells the
-  output to listen only for messages we expect and ignore any other
-  messages.
-
-    ```Ruby
-    article = mock_model(Article).as_null_object
-    ```
-
+* Avoid mocks and stubs where possible.
 * Use `let` blocks instead of `before(:each)` blocks to create data for
   the spec examples. `let` blocks get lazily evaluated.
 
