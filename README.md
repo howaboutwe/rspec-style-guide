@@ -116,8 +116,22 @@ You can generate a PDF or an HTML copy of this guide using
 
 * Use Machinist (for dating) or Factory Girl (everything else) to
   create test objects.
-* Avoid mocks and stubs where possible (and where performance is not
-  *signficantly* penalized).
+
+* Try to avoid mocking and stubbing, favoring test parameters or
+  attributes instead. When resorting to mocking and stubbing, only
+  mock against a small, stable, obvious (or documented) API, so stubs
+  are likely to represent reality after future refactoring.
+
+* Valid reasons to use stubs/mocks:
+  * Performance: To prevent running a slow, unrelated task.
+  * Determinism: To ensure the test gives the same result each
+    time. e.g. Time.now, Kernel#rand, external web services.
+  * Vendoring: When relying on 3rd party code used as a "black box",
+    which wasn't written with testability in mind.
+  * Legacy: Stubbing old code that requires complex setup. (New code
+    should not require complex setup!)
+  * BDD: To remove the dependence on code that does not yet exist.
+
 * Use `let` blocks instead of `before(:each)` blocks to create data for
   the spec examples. `let` blocks get lazily evaluated.
 
