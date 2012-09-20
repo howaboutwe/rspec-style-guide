@@ -66,9 +66,18 @@ You can generate a PDF or an HTML copy of this guide using
   * Top level: use `describe` with a constant name: `describe User ...`
   * 2nd level: use `describe` with a method name: `describe "#awesome?"`
   * Inner blocks: use a `context` that starts with `when`: `context "when user is unsubscribed"`
-  * Example describes the expectation: `it "is false"`, not `it "should be false"`
+  * Example describes the expectation: `it "is false"`.
   * Full spec name: "User#awesome? when user is unsubscribed is false"
  
+* Do not use "should" in our example names.
+
+  ```Ruby
+  # good
+  it "returns true"
+
+  # bad
+  it "should return true"
+
 * Write expectations at a high level, removed from logic and implementation details.
 
   ```Ruby
