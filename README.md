@@ -61,6 +61,14 @@ You can generate a PDF or an HTML copy of this guide using
     end
     ```
 
+* Try to keep the full spec name (concatentation of the nested descriptions)
+  grammatically correct. These rules offer one way of doing this:
+  * Top level: use `describe` with a constant name: `describe User ...`
+  * 2nd level: use `describe` with a method name: `describe "#awesome?"`
+  * Inner blocks: use a `context` that starts with `when`: `context "when user is unsubscribed"`
+  * Example describes the expectation: `it "is false"`
+  * Full spec name: "User#awesome? when user is unsubscribed is false"
+
 * Make heavy use of `describe` and `context`, but do not use a `context` for a single test.
 * Name the `describe` blocks as follows:
   * use "description" for non-methods
