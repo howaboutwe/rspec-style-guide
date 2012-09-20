@@ -413,7 +413,7 @@ which should be validated. Using `be_valid` does not guarantee that the problem
      end
      ```
 
-### State
+### Miscellaneous
 
 * Avoid incidental state as much as possible.
     ```Ruby
@@ -438,6 +438,13 @@ which should be validated. Using `be_valid` does not guarantee that the problem
       end
     end
     ```
+* Shared examples are helpful for tidying up repetitive expectations,
+but should be written to be composable if possible to allow for situations where
+many but not all of the shared expectations are required.
+
+* Be careful not to focus on being "DRY" by moving repeated expectations
+into a shared environment too early, as this can lead to brittle tests
+that rely too much on one other.
 
 # Contributing
 
