@@ -92,7 +92,8 @@ You can generate a PDF or an HTML copy of this guide using
 
 * Use Machinist (for dating) or Factory Girl (everything else) to
   create test objects.
-* Avoid mocks and stubs where possible.
+* Avoid mocks and stubs where possible (and where performance is not
+  *signficantly* penalized).
 * Use `let` blocks instead of `before(:each)` blocks to create data for
   the spec examples. `let` blocks get lazily evaluated.
 
