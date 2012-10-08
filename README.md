@@ -384,7 +384,7 @@ which should be validated. Using `be_valid` does not guarantee that the problem
 
         # good
         it "publishes the article" do
-          -> { article.publish }.should_change(Article, :count).by(1)
+          -> { article.publish }.should change(Article, :count).by(1)
         end
       end
     end
