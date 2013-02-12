@@ -24,7 +24,7 @@ You can generate a PDF or an HTML copy of this guide using
 
 ## RSpec
 
-* Use just one expectation per example.
+* Try to use just one expectation per example, within reason.
 
     ```Ruby
     # bad
@@ -61,8 +61,8 @@ You can generate a PDF or an HTML copy of this guide using
     end
     ```
 
-* Try to keep the full spec name (concatentation of the nested descriptions)
-  grammatically correct. These rules offer one way of doing this:
+* Keep the full spec name (concatentation of the nested descriptions)
+  grammatically correct.
   * Top level: use `describe` with a constant name: `describe User ...`
   * 2nd level: use `describe` with a method name: `describe "#awesome?"`
   * Inner blocks: use a `context` that starts with `when`: `context "when user is unsubscribed"`
@@ -94,8 +94,9 @@ You can generate a PDF or an HTML copy of this guide using
   end
   ```
 
-* Make heavy use of `describe` and `context`, but do not use a `context` for a single test.
-* Name the `describe` blocks as follows:
+* Use `describe` for concepts which don't in themselves vary (e.g. "callbacks, validations, <method_name>"). Typically these are nouns.
+
+* Name `describe` blocks as follows:
   * use "description" for non-methods
   * use pound "#method" for instance methods
   * use dot ".method" for class methods
@@ -372,6 +373,11 @@ which should be validated. Using `be_valid` does not guarantee that the problem
        end
      end
      ```
+
+### Rake Tasks
+
+* Rake tasks should be dumb (one-liners ideally), and call out to a model or
+  library class which is tested like any other.
 
 ### Miscellaneous
 
