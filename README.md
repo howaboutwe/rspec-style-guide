@@ -343,7 +343,7 @@ which should be validated. Using `be_valid` does not guarantee that the problem
       end
     end
 
-    # prefered
+    # preferred
     describe '#title'
       it 'is required' do
         article.title = nil
