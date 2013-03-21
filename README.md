@@ -21,6 +21,14 @@ You can generate a PDF or an HTML copy of this guide using
 ## Table of Contents
 
 * [RSpec](#rspec)
+* [Views](#views)
+* [Controllers](#controllers)
+* [Models](#models)
+* [Mailers](#mailers)
+* [Rake Tasks](#rake-tasks)
+* [Miscellaneous](#miscellaneous)
+* [Contributing](#contributing)
+* [Spread the Word](#spread-the-word)
 
 ## RSpec
 
