@@ -144,8 +144,7 @@ You can generate a PDF or an HTML copy of this guide using
   end
   ```
 
-* Use Machinist (for dating) or Factory Girl (everything else) to
-  create test objects.
+* Use Factory Girl to create test objects.
 
 * Try to avoid mocking and stubbing, favoring test parameters or
   attributes instead. When resorting to mocking and stubbing, only
