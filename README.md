@@ -320,10 +320,11 @@ You can generate a PDF or an HTML copy of this guide using
 * Use Factory Girl or Mechanize to make real objects.
 * It is acceptable to mock other models or child objects.
 * Create the model for all examples in the spec to avoid duplication.
+* Avoid unnecessary database calls.
 
     ```Ruby
     describe Article
-      let(:article) { FactoryGirl.create(:article) }
+      let(:article) { FactoryGirl.build(:article) }
     end
     ```
 
