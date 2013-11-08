@@ -412,6 +412,40 @@ which should be validated. Using `be_valid` does not guarantee that the problem
       end
     end
     ```
+        
+* Avoid use of Timecop in a spec as often as possible. If necessary, always use
+block form when freezing/traveling.
+    ```Ruby
+    describe Post do
+        let(:post) { FactoryGirl.create(:post) }
+        let(:response) { FactoryGirl.build(:post, parent_id: post.id) }
+
+      describe "#comment" do
+        # bad
+        
+        before { Timecop.freeze(2.days.from_now) }
+        
+        it "updates the replied to column of the post" do
+          expect do
+            response.save
+          end.to change(post, :responded_to_at)
+        end
+        
+        after { Timecop.return }
+        
+        # good
+        
+        it "updates the replied to column of the post" do
+          Timecop.freeze(2.days.from_now) do
+            expect do
+              response.save
+            end.to change(post, :responded_to_at)
+          end
+        end
+      end
+    end
+    ```
+        
 * Shared examples are helpful for tidying up repetitive expectations,
 but should be written to be composable if possible to allow for situations where
 many but not all of the shared expectations are required.
