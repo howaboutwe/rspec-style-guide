@@ -413,8 +413,7 @@ which should be validated. Using `be_valid` does not guarantee that the problem
     end
     ```
         
-* Avoid use of Timecop in a spec as often as possible. If necessary, always use
-block form when freezing/traveling.
+* Attempt to write any time-related specs without use of Timecop. If necessary, prefer use of the block form of its methods.
     ```Ruby
     describe Post do
         let(:post) { FactoryGirl.create(:post) }
