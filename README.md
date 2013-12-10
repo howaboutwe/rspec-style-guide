@@ -161,9 +161,10 @@ You can generate a PDF or an HTML copy of this guide using
     should not require complex setup!)
   * BDD: To remove the dependence on code that does not yet exist.
   * Controller / Functional tests:
-  > In a controller spec, we don't care about how our data objects are created or what data they contain; we are writing expectations for the functional behavior of that controller, and that controller only. Mocks and stubs are used to decouple from the model layer and stay focused on the task of specing the controller.
-  >
-  > joahking, RailsForum: http://railsforum.com/viewtopic.php?pid=68311#p68311
+
+    > In a controller spec, we don't care about how our data objects are created or what data they contain; we are writing expectations for the functional behavior of that controller, and that controller only. Mocks and stubs are used to decouple from the model layer and stay focused on the task of specing the controller.
+    >
+    > joahking, RailsForum: http://railsforum.com/viewtopic.php?pid=68311#p68311
 
 * Use `let` blocks instead of `before(:each)` blocks to create data for
   the spec examples. `let` blocks get lazily evaluated.
