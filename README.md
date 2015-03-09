@@ -82,9 +82,10 @@ You can generate a PDF or an HTML copy of this guide using
   ```Ruby
   # good
   it "returns true"
-
+  
   # bad
   it "should return true"
+  ```
 
 * Write expectations at a high level, removed from logic and implementation details.
 
@@ -93,7 +94,7 @@ You can generate a PDF or an HTML copy of this guide using
   it "calls more_results if i=0" do
     # ...
   end
-
+  
   # good
   context "no results are returned by the initial search" do
     it "attempts to find more results" do
