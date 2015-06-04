@@ -85,6 +85,7 @@ You can generate a PDF or an HTML copy of this guide using
 
   # bad
   it "should return true"
+  ```
 
 * Write expectations at a high level, removed from logic and implementation details.
 
